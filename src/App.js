@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import TrackerForm from "./Components/TrackerForm";
+import TrackerList from "./Components/TrackerList";
 
 function App() {
   return (
     <div>
       <Headline>tracker</Headline>
       <TrackerForm />
+      <TrackerList/>
     </div>
   );
 }
