@@ -6,10 +6,10 @@ const TimerList = ({ timer }) => {
     <Container>
       <List>
         {timer.map((elem) => (
-          <li key={elem.id}>
-            <p>{elem.text}</p>
+          <ListItem key={elem.id}>
+            <Label>{elem.text}</Label>
             <Timer />
-          </li>
+          </ListItem>
         ))}
       </List>
     </Container>
@@ -17,17 +17,38 @@ const TimerList = ({ timer }) => {
 };
 
 const Container = styled.div`
-  width: 400px;
+  width: 450px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
 `;
 
-const List = styled.div`
+const List = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
+  margin-top: 20px;
+`;
+
+const Label = styled.span`
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+`;
+
+const ListItem = styled.li`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid lightgrey;
+  &:last-child {
+    border-bottom: 1px solid lightgrey;
+  }
+  padding: 10px;
+  &:hover {
+    background: #f4f5e6;
+    color: green;
+    transition: all 0.6s ease-in-out;
+  }
 `;
 
 export default TimerList;

@@ -106,14 +106,13 @@ const Timer = () => {
         <span className="seconds">{seconds}</span>
       </div>
 
-      <IconContainer>
-        <button onClick={toggle}>
+
+        <Button onClick={toggle}>
           {running ? <StopIcon /> : <PlayIcon />}
-        </button>
-        <button>
-          <RemoveIcon />
-        </button>
-      </IconContainer>
+        </Button>
+        <Button>
+          <Remove />
+        </Button>
     </Container>
   );
 };
@@ -124,6 +123,15 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const IconContainer = styled.div``;
+const Button = styled.button`
+  border: none;
+  background: transparent;
+  width: 15px;
+  cursor: pointer;
+`
+
+const Remove = styled(RemoveIcon)`
+   fill: red;
+`
 
 export default Timer;

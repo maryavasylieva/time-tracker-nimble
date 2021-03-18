@@ -13,34 +13,31 @@ const TrackerForm = ({ addTimer }) => {
   };
 
   return (
-    <div>
-      <Form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          name="tracker"
-          value={value}
-          id="tracker"
-          placeholder="Enter tracker name"
-          onChange={(e) => setValue(e.target.value)}
-          required
-        />
-        <Button>
-          <Icon />
-        </Button>
-      </Form>
-    </div>
+    <Form onSubmit={handleSubmit}>
+      <Input
+        type="text"
+        name="tracker"
+        value={value}
+        id="tracker"
+        placeholder="Enter tracker name"
+        onChange={(e) => setValue(e.target.value)}
+        required
+      />
+      <Button>
+        <Icon />
+      </Button>
+    </Form>
   );
 };
 
 const Form = styled.form`
   margin: 0 auto;
-  width: 400px;
   display: flex;
   flex-direction: row;
   padding-left: 10px;
   border: 1px solid rgb(166, 171, 185);
   border-radius: 40px;
-  width: 410px;
+  width: 450px;
   height: 30px;
   padding: 2px;
   position: relative;
