@@ -5,7 +5,7 @@ import { ReactComponent as RemoveIcon } from "../assets/remove_circle_outline-24
 import { ReactComponent as PlayIcon } from "../assets/play_circle_outline-24px.svg";
 import { ReactComponent as StopIcon } from "../assets/pause_circle_outline-24px.svg";
 
-const TrackerList = () => {
+const Timer = () => {
   const [running, setRunning] = useState(false);
   const [startTimestamp, setStartTimestamp] = useState(null);
   const [lastTimestamp, setLastTimestamp] = useState(null);
@@ -70,57 +70,60 @@ const TrackerList = () => {
     window.requestAnimationFrame(step);
   };
 
-//   const stop = () => {
-//     if (!running) {
-//       return;
-//     }
+  //   const stop = () => {
+  //     if (!running) {
+  //       return;
+  //     }
 
-//     setRunning(false);
-//     setElapsedTimeStamp(0);
+  //     setRunning(false);
+  //     setElapsedTimeStamp(0);
 
-//     if ("function" === typeof this.props.onComplete) {
-//       this.props.onComplete({
-//         startDate: this.state.startDate,
-//         label: this.state.label,
-//         elapsedTimestamp: this.state.elapsedTimestamp,
-//       });
-//     }
-//   };
+  //     if ("function" === typeof this.props.onComplete) {
+  //       this.props.onComplete({
+  //         startDate: this.state.startDate,
+  //         label: this.state.label,
+  //         elapsedTimestamp: this.state.elapsedTimestamp,
+  //       });
+  //     }
+  //   };
 
   const toggle = () => {
     if (running) {
-    //   stop();
+      //   stop();
     } else {
       start();
     }
   };
 
+  const remove = () => {
+
+  }
   return (
     <Container>
-      <span>No name tracker</span>
-      <div className="timer-counter">
+      <div>
         <span className="hours">{hours}</span>:
         <span className="minutes">{minutes}</span>:
         <span className="seconds">{seconds}</span>
       </div>
+
       <IconContainer>
         <button onClick={toggle}>
           {running ? <StopIcon /> : <PlayIcon />}
         </button>
-        <RemoveIcon />
+        <button>
+          <RemoveIcon />
+        </button>
       </IconContainer>
     </Container>
   );
 };
 
 const Container = styled.div`
-  width: 400px;
-  margin: 0 auto;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  align-items: center;
 `;
 
 const IconContainer = styled.div``;
 
-export default TrackerList;
+export default Timer;
