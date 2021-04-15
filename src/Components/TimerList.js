@@ -1,14 +1,15 @@
+// import { useState, useEffect } from "react";
 import Timer from "./Timer";
 import styled from "styled-components";
 
-const TimerList = ({ timer }) => {
+const TimerList = ({ timer, removeTimer }) => {
   return (
     <Container>
       <List>
         {timer.map((elem) => (
           <ListItem key={elem.id}>
             <Label>{elem.text}</Label>
-            <Timer />
+            <Timer removeTimer={removeTimer} />
           </ListItem>
         ))}
       </List>
@@ -40,10 +41,10 @@ const ListItem = styled.li`
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid lightgrey;
+  padding: 10px 0 10px 10px;
   &:last-child {
     border-bottom: 1px solid lightgrey;
   }
-  padding: 10px;
   &:hover {
     background: #f4f5e6;
     color: green;

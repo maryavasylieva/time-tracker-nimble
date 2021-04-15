@@ -5,8 +5,12 @@ import TimerList from "./Components/TimerList";
 import TrackerForm from "./Components/TrackerForm";
 
 function App() {
-  const initialState = () => JSON.parse(localStorage.getItem("timer") || null);
-  const [timer, setTimer] = useState(initialState);
+  const [timer, setTimer] = useState([]);
+
+  useEffect(() => {
+    const saved = JSON.parse(localStorage.getItem("timer") || []);
+    setTimer(saved);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("timer", JSON.stringify(timer));
@@ -17,11 +21,16 @@ function App() {
     setTimer(newTodos);
   };
 
+  const removeTimer = (id) => {
+    const newTimerState = timer.filter((elem) => elem.id !== id);
+    setTimer(newTimerState);
+  };
+
   return (
     <div>
       <Headline>tracker</Headline>
       <TrackerForm addTimer={addTimer} />
-      <TimerList timer={timer} />
+      <TimerList timer={timer} removeTimer={removeTimer} />
     </div>
   );
 }
