@@ -31,6 +31,7 @@ const List = styled.ul`
 
 const Label = styled.span`
   font-family: "Raleway", sans-serif;
+  font-weight: 700;
   font-size: 14px;
   font-weight: 700;
 `;
@@ -50,6 +51,7 @@ const ListItem = styled.li`
     color: green;
     transition: all 0.6s ease-in-out;
   }
+  /* TODO: активный таймер должен подсвечиваться */
 `;
 
 export default TimerList;

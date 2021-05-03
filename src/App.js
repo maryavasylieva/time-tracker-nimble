@@ -4,6 +4,8 @@ import styled from "styled-components";
 import TimerList from "./Components/TimerList";
 import TrackerForm from "./Components/TrackerForm";
 
+const shortid = require("shortid");
+
 function App() {
   const [timer, setTimer] = useState([]);
 
@@ -17,12 +19,14 @@ function App() {
   }, [timer]);
 
   const addTimer = (text) => {
-    const newTodos = [...timer, { id: new Date(), text: text }];
+    const newTodos = [...timer, { id: shortid.generate(), text: text }];
     setTimer(newTodos);
   };
 
   const removeTimer = (id) => {
-    const newTimerState = timer.filter((elem) => elem.id !== id);
+    console.log(id);
+    console.log("Remove click!");
+    const newTimerState = timer.filter((elem) => elem._id !== id);
     setTimer(newTimerState);
   };
 

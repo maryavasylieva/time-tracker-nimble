@@ -1,9 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
+
+
 import { ReactComponent as PlayIcon } from "../assets/play_circle_filled-24px.svg";
+import useTimer from "../hook/useTimer";
 
 const TrackerForm = ({ addTimer }) => {
   const [value, setValue] = useState("");
+  const { handleRun } = useTimer();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,9 +25,8 @@ const TrackerForm = ({ addTimer }) => {
         id="tracker"
         placeholder="Enter tracker name"
         onChange={(e) => setValue(e.target.value)}
-        required
       />
-      <Button>
+      <Button onClick={handleRun}>
         <Icon />
       </Button>
     </Form>

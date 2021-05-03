@@ -1,49 +1,25 @@
-import React, { Component } from "react";
 import { useState, useRef } from "react";
 import styled from "styled-components";
 
 import { ReactComponent as RemoveIcon } from "../assets/remove_circle_outline-24px.svg";
 import { ReactComponent as PlayIcon } from "../assets/play_circle_outline-24px.svg";
 import { ReactComponent as StopIcon } from "../assets/pause_circle_outline-24px.svg";
+import { renderTime } from "../utils/renderTime";
+import useTimer from "../hook/useTimer";
+
 // TODO: 1.Создание записи происходит путем введения имени и нажатия кнопки ▶ или Enter, cразу же запускается таймер; 2.Если кнопка ▶ была нажата без введения имени, то имя генерируется автоматически на основе текущей даты;
 
-
-
 const Timer = ({ removeTimer }) => {
-  const [running, setRunning] = useState(false);
-  const [stop, setStop] = useState(false);
-  const [time, setTime] = useState(0);
-  const counterRef = useRef();
-
-  const renderTime = () => {
-    const getSeconds = `0${time % 60}`.slice(-2);
-    const minutes = `${Math.floor(time / 60)}`;
-    const getMinutes = `0${minutes % 60}`.slice(-2);
-    const getHours = `0${Math.floor(time / 3600)}`.slice(-2);
-
-    return `${getHours} : ${getMinutes} : ${getSeconds}`;
-  };
-
-  const handleRun = () => {
-    if (!running) {
-      counterRef.current = setInterval(() => {
-        setTime((time) => time + 1);
-      }, 1000);
-      setRunning(true);
-    } else {
-      clearInterval(counterRef.current);
-      setRunning(false);
-      setStop(time);
-    }
-  };
+  const { running, time, handleResume, handleRun } = useTimer(0);
 
   return (
     <Container>
-      <TimeContainer>{renderTime()}</TimeContainer>
+      <TimeContainer>{renderTime(time)}</TimeContainer>
 
       <Button onClick={handleRun}>
         {running ? <StopIcon /> : <PlayIcon />}
       </Button>
+      <Button onClick={handleResume}></Button>
       <Button onClick={removeTimer}>
         <Remove />
       </Button>
@@ -173,7 +149,6 @@ const Container = styled.div`
 const Button = styled.button`
   border: none;
   background: transparent;
-  /* width: 15px; */
   padding: 0;
   cursor: pointer;
 `;
@@ -184,7 +159,7 @@ const Remove = styled(RemoveIcon)`
 `;
 
 const TimeContainer = styled.div`
-  font-family: "Raleway", sans-serif;
+  font-family: "Titillim Web", sans-serif;
   font-size: 14px;
   font-weight: 700;
   margin-right: 15px;
